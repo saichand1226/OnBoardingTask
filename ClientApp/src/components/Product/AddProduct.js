@@ -31,7 +31,7 @@ export class AddProduct extends Component {
         event.preventDefault();
         this.props.onClose();
         const { id, name, price } = this.state;
-        if (name && price) {
+        if (name || price) {
         const newProduct = {
             id,
             name,

@@ -131,12 +131,12 @@ export class EditSale extends Component {
                         <Form.Field>
                             <label>Select a Customer</label>
                             <Dropdown
-                                placeholder='Select a Customer'
+                                placeholder={this.props.cname}
                                 fluid
                                 selection
                                 options={this.state.customers}
                                 onChange={this.handleCustomerChange}
-                                value={this.props.value}
+                                defaultValue={this.props.cname}
                                 style={dropdownStyle}
                                 onClick={this.fetchCustomers}
                             />
@@ -146,12 +146,12 @@ export class EditSale extends Component {
                         <Form.Field>
                             <label>Select a Product</label>
                             <Dropdown
-                                placeholder='Select a Product'
+                                placeholder={this.props.pname}
                                 fluid
                                 selection
                                 options={this.state.products}
                                 onChange={this.handleProductChange}
-                                value={this.props.value}
+                                defaultValue={this.props.pname}
                                 style={dropdownStyle}
                                 onClick={this.fetchProducts}
                             />
@@ -159,14 +159,14 @@ export class EditSale extends Component {
 
 
                         <Form.Field>
-                            <label>Select a Product</label>
+                            <label>Select a Store</label>
                             <Dropdown
-                                placeholder='Select a Store'
+                                placeholder={this.props.sname}
                                 fluid
                                 selection
                                 options={this.state.stores}
                                 onChange={this.handleStoreChange}
-                                value={this.props.value}
+                                defaultValue={this.props.sname}
                                 style={dropdownStyle}
                                 onClick={this.fetchStores}
                             />

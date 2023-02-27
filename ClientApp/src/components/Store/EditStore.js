@@ -24,7 +24,7 @@ export class EditStore extends Component {
     handleSubmit(event, id) {
         event.preventDefault();
         const { name, address } = this.state;
-        if (name && address) {
+        if (name || address) {
         const newStore = {
             id,
             name,

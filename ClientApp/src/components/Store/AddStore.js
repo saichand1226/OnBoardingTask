@@ -30,7 +30,7 @@ export class AddStore extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { id, name, address } = this.state;
-        if (name && address) {
+        if (name || address) {
         const newStore = {
             id,
             name,

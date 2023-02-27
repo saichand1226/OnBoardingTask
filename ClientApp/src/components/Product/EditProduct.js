@@ -32,7 +32,7 @@ export class EditProduct extends Component {
     handleSubmit(event, id) {
         event.preventDefault();
         const { name, price } = this.state;
-        if (name && price) {
+        if (name || price) {
         const newProduct = {
             id,
             name,

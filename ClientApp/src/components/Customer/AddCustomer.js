@@ -14,7 +14,7 @@ export class AddCustomer extends Component {
     }
     handleNameChange(event) {
        
-        const onlyAlphabets = /^[A-Za-z]+$/;
+        const onlyAlphabets = /^[A-Za-z\s]+$/;
         const inputValue = event.target.value;
 
         if (onlyAlphabets.test(inputValue) || inputValue === '') {
@@ -32,7 +32,7 @@ export class AddCustomer extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const { name, address } = this.state;
-        if (name && address) {
+        if (name || address) {
             const newCustomer = {
                 name,
                 address,

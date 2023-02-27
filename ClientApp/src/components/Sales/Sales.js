@@ -9,7 +9,7 @@ import { Table, Button, Modal } from 'semantic-ui-react';
 export class Sales extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { saleId: 0, saleName: "", custName: "", prodName: "", storeName:"", currentPage: 1, salesPerPage: 5, sales: [], allCustomerNames: [], allProductNames: [], allStoreNames: [], isDeleteModalOpen: false, isAddModalOpen: false, isEditModalOpen: false }
+        this.state = { saleId: 0, saleName: "", custName: "", prodName: "", storeName: "", currentPage: 1, salesPerPage: 5, sales: [], allCustomerNames: [], allProductNames: [], allStoreNames: [], isDeleteModalOpen: false, isAddModalOpen: false, isEditModalOpen: false }
         this.handleDeleteOpenModal = this.handleDeleteOpenModal.bind(this);
         this.handleDeleteCloseModal = this.handleDeleteCloseModal.bind(this);
         this.handleAddOpenModal = this.handleAddOpenModal.bind(this);
@@ -30,11 +30,11 @@ export class Sales extends React.Component {
 
     refreshList() {
 
-            fetch('/api/Sales').then(response => response.json())
-                .then(data => {
-                    this.setState({ sales: data });
-                
-                })
+        fetch('/api/Sales').then(response => response.json())
+            .then(data => {
+                this.setState({ sales: data });
+
+            })
 
 
     }
@@ -120,14 +120,14 @@ export class Sales extends React.Component {
                                     <td>{s.dateSold}</td>
 
                                     <td>
-                                        <Button color='yellow' onClick={() => this.setState({ isEditModalOpen: true, saleId: s.saleId, custName: s.custName, prodName: s.prodName, storeName: s.storeName })} >Edit</Button>
+                                        <Button color='yellow' onClick={() => this.setState({ isEditModalOpen: true, saleId: s.saleId, custName: s.customerName, prodName: s.productName, storeName: s.storeName })} >Edit</Button>
                                         <EditSale
                                             open={this.state.isEditModalOpen}
                                             onClose={this.handleEditCloseModal}
                                             id={this.state.saleId}
-                                            customername={this.state.custName}
-                                            productname={this.state.prodName}
-                                            storename={this.state.storeName}
+                                            cname={this.state.custName}
+                                            pname={this.state.prodName}
+                                            sname={this.state.storeName}
 
                                         />
                                     </td>
