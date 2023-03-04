@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
 import { Button, Modal } from 'semantic-ui-react';
-
-
 export class DeleteProduct extends Component {
 
     constructor(props) {
@@ -14,7 +10,7 @@ export class DeleteProduct extends Component {
     deleteProduct(id) {
 
         fetch('/api/Products/' + id, { method: "delete" })
-        
+
             .then(res => {
                 if (res.status === 500) {
                     alert("We cannot delete this Product as this Product has an existing sales linked");
@@ -27,14 +23,8 @@ export class DeleteProduct extends Component {
                 alert("An error occurred while deleting the Product");
             });
     }
-
     render() {
-
-
-
-
         let { open, id, onClose } = this.props;
-
         return (
             <Modal open={open} onClose={onClose}>
                 <Modal.Header>Delete Product</Modal.Header>

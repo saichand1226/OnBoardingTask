@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Button, Modal } from 'semantic-ui-react';
 export class DeleteCustomer extends Component {
     constructor(props) {
         super(props);
     }
-    //deleteCustomer(id) {
 
-    //    fetch('/api/Customers/' + id, { method: "delete" })
-    //    //if (res.status === 409) {
-    //    //    alert("We cannot delete this customer as this customer has an existing sales linked");
-    //    //}
-    //    //else {
-    //    //    this.props.onClose();
-    //    //}
-    //    this.props.onClose();
-    //}
     deleteCustomer(id) {
         fetch('/api/Customers/' + id, { method: "delete" })
             .then(res => {

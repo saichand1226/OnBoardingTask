@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { DeleteProduct } from './DeleteProduct';
 import { AddProduct } from './AddProduct';
 import { EditProduct } from './EditProduct';
-import { Table, Button, Modal } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 export class Product extends React.Component {
     constructor(props) {
@@ -66,7 +65,7 @@ export class Product extends React.Component {
 
     //another life cycle method
     render() {
-        const { products, prodId, prodName, prodPrice, currentPage, productsPerPage } = this.state;
+        const { products, prodId, currentPage, productsPerPage } = this.state;
         const indexOfLastProduct = currentPage * productsPerPage;
         const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
         const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -89,8 +88,6 @@ export class Product extends React.Component {
                     open={this.state.isAddModalOpen}
                     onClose={this.handleAddCloseModal}
                 />
-
-
                 <table className="ui celled table">
                     <thead>
                         <tr>
@@ -103,7 +100,7 @@ export class Product extends React.Component {
                     </thead>
                     <tbody>
                         {
-                           
+
                             currentProducts && currentProducts.map((p, index) => {
                                 return <tr key={index}>
                                     <td>{p.name}</td>
@@ -116,7 +113,7 @@ export class Product extends React.Component {
                                             onClose={this.handleEditCloseModal}
                                             id={this.state.prodId}
                                             name={this.state.prodName}
-                                            address={this.state.prodPrice}
+                                            price={this.state.prodPrice}
 
                                         />
                                     </td>
@@ -126,10 +123,7 @@ export class Product extends React.Component {
                                             open={this.state.isDeleteModalOpen}
                                             onClose={this.handleDeleteCloseModal}
                                             id={prodId}
-
                                         />
-
-
                                     </td>
                                 </tr>
                             })
@@ -143,9 +137,5 @@ export class Product extends React.Component {
             </div>
         );
     }
-
-
-
 }
 
-//export default Customer

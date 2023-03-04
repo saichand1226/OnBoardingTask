@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Modal, Form, Header } from 'semantic-ui-react';
 export class EditCustomer extends Component {
     constructor(props) {
         super(props);
@@ -17,23 +17,23 @@ export class EditCustomer extends Component {
 
         if (onlyAlphabets.test(inputValue) || inputValue === '') {
             this.setState({
-                name: event.currentTarget.value,
+                name: event.target.value,
             });
         }
     }
     handleAddressChange(event) {
         this.setState({
-            address: event.currentTarget.value,
+            address: event.target.value,
         });
     }
+
     handleSubmit(event, id) {
         event.preventDefault();
         const { name, address } = this.state;
-        if (name || address) {
         const newCustomer = {
             id,
-            name,
-            address,
+            name: name || this.props.name,
+            address: address || this.props.address,
         };
         this.props.onClose();
         fetch('/api/Customers/' + id, {
@@ -46,15 +46,10 @@ export class EditCustomer extends Component {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                //if (data.success) {
-                //    alert("Product details Updated Successfully!");
-                //}
             })
         alert("Customer details Updated Successfully!");
-        } else {
-            alert('Please enter values for both Name and Address fields.');
-        }
     }
+
     render() {
         const { open, onClose, id, name, address } = this.props;
         return (
@@ -68,8 +63,6 @@ export class EditCustomer extends Component {
                             <label>Address:<span style={{ color: 'red' }}>*</span></label>
                             <input placeholder='Enter Address' defaultValue={address} onChange={this.handleAddressChange} required />
                         </Form.Field>
-                        {/*<Form.Button positive type="submit" >Save</Form.Button>*/}
-                        {/*<Form.Button negative onClick={this.props.onClose} >Cancel</Form.Button>*/}
                         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <Form.Button positive type="submit">Save</Form.Button>
                             <Form.Button negative onClick={onClose}>Cancel</Form.Button>
@@ -77,8 +70,6 @@ export class EditCustomer extends Component {
                         </div>
                     </Form>
                 </Modal.Content>
-
-               
             </Modal>
         );
     }

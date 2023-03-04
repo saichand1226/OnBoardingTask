@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 export class AddCustomer extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +13,7 @@ export class AddCustomer extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleNameChange(event) {
-       
+
         const onlyAlphabets = /^[A-Za-z\s]+$/;
         const inputValue = event.target.value;
 
@@ -28,7 +28,7 @@ export class AddCustomer extends Component {
             address: event.target.value,
         });
     }
-    
+
     handleSubmit(event) {
         event.preventDefault();
         const { name, address } = this.state;

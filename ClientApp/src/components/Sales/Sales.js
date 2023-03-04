@@ -4,8 +4,6 @@ import { DeleteSale } from './DeleteSale';
 import { AddSale } from './AddSale';
 import { EditSale } from './EditSale';
 import { Table, Button, Modal } from 'semantic-ui-react';
-
-
 export class Sales extends React.Component {
     constructor(props) {
         super(props);
@@ -35,13 +33,10 @@ export class Sales extends React.Component {
                 this.setState({ sales: data });
 
             })
-
-
     }
 
     handleDeleteOpenModal() {
         this.setState({ isDeleteModalOpen: true });
-
     }
 
     handleDeleteCloseModal() {
@@ -50,7 +45,6 @@ export class Sales extends React.Component {
 
     handleAddOpenModal() {
         this.setState({ isAddModalOpen: true });
-
     }
 
     handleAddCloseModal() {
@@ -59,14 +53,11 @@ export class Sales extends React.Component {
 
     handleEditOpenModal() {
         this.setState({ isEditModalOpen: true });
-
     }
 
     handleEditCloseModal() {
         this.setState({ isEditModalOpen: false });
     }
-
-
     //another life cycle method
     render() {
         const { saleId, saleName, currentPage, salesPerPage, sales, custName, prodName, storeName } = this.state;
@@ -95,8 +86,6 @@ export class Sales extends React.Component {
                     allProductNames={this.state.allProductNames}
                     allStoreNames={this.state.allStoreNames}
                 />
-
-
                 <table className="ui celled table">
                     <thead>
                         <tr>
@@ -111,7 +100,6 @@ export class Sales extends React.Component {
                     </thead>
                     <tbody>
                         {
-
                             currentSales && currentSales.map((s, index) => {
                                 return <tr key={index}>
                                     <td>{s.customerName}</td>
@@ -139,22 +127,16 @@ export class Sales extends React.Component {
                                             id={saleId}
                                             sales={this.sales}
                                         />
-
-
                                     </td>
                                 </tr>
                             })
                         }
                     </tbody>
                 </table>
-
                 <div className="pagination">
                     {renderPageNumbers}
                 </div>
             </div>
         );
     }
-
-
-
 }

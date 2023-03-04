@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Button, Modal, Dropdown, Header, Form } from 'semantic-ui-react';
 export class EditSale extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -52,10 +51,7 @@ export class EditSale extends Component {
                 }));
                 this.setState(this.state.customers);
             })
-
     }
-
-
     fetchStores() {
         fetch('/api/Stores').then(response => response.json())
             .then(data => {
@@ -68,10 +64,7 @@ export class EditSale extends Component {
                 this.setState(this.state.stores);
 
             })
-
     }
-
-
     fetchProducts() {
         fetch('/api/Products').then(response => response.json())
             .then(data => {
@@ -82,15 +75,9 @@ export class EditSale extends Component {
                 }));
                 this.setState(this.state.products);
             })
-
     }
-
     handleSubmit(event, id) {
-
-
-
         const { CustomerId, ProductId, StoreId, DateSold } = this.state;
-
         const updatedSale = {
             id,
             ProductId,
@@ -109,24 +96,18 @@ export class EditSale extends Component {
             .then(response => response.json())
             .then(data => alert("Store details has been Updated"))
             .catch(error => console.error(error));
-
-
         this.props.onClose();
     }
 
     render() {
         const { open, onClose, id } = this.props;
-
         const dropdownStyle = { margin: '20px' };
         const buttonStyle = { margin: '20px' };
 
         return (
-
             <Modal open={open} onClose={onClose}>
                 <Header content="Edit Sale" />
                 <Modal.Content>
-
-
                     <Form>
                         <Form.Field>
                             <label>Select a Customer</label>
@@ -142,7 +123,6 @@ export class EditSale extends Component {
                             />
                         </Form.Field>
 
-
                         <Form.Field>
                             <label>Select a Product</label>
                             <Dropdown
@@ -156,7 +136,6 @@ export class EditSale extends Component {
                                 onClick={this.fetchProducts}
                             />
                         </Form.Field>
-
 
                         <Form.Field>
                             <label>Select a Store</label>
@@ -186,15 +165,7 @@ export class EditSale extends Component {
                     <Button color='yellow' style={buttonStyle} onClick={(event) => this.handleSubmit(event, id)}>Submit</Button>
                     <Button color='black' style={buttonStyle} onClick={this.props.onClose}>Cancel</Button>
                 </Modal.Content>
-                {/*<Modal.Actions>*/}
-                {/*    <Button color='black' onClick={this.props.onClose}>*/}
-                {/*        Cancel*/}
-                {/*    </Button>*/}
-
-                {/*</Modal.Actions>*/}
-
             </Modal>
-
         );
     }
 }

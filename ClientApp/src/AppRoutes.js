@@ -1,5 +1,3 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Customer } from "./components/Customer/Customer";
 import { Product } from "./components/Product/Product";

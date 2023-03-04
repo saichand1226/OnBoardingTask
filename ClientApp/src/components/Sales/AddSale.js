@@ -54,8 +54,6 @@ export class AddSale extends Component {
             })
 
     }
-
-
     fetchStores() {
         fetch('/api/Stores').then(response => response.json())
             .then(data => {
@@ -70,8 +68,6 @@ export class AddSale extends Component {
             })
 
     }
-
-
     fetchProducts() {
         fetch('/api/Products').then(response => response.json())
             .then(data => {
@@ -87,9 +83,6 @@ export class AddSale extends Component {
 
     handleSubmit(event) {
 
-
-        //console.log(this.state.CustomerId);
-        //console.log(this.state.ProductId)
         const { id, CustomerId, ProductId, StoreId, DateSold } = this.state;
 
         const newSale = {
@@ -108,9 +101,7 @@ export class AddSale extends Component {
             body: JSON.stringify(newSale)
         })
 
-            .catch(error => console.error(error));
-
-        //window.location.reload(false);
+        .catch(error => console.error(error));
         this.props.onClose();
     }
 
@@ -182,15 +173,7 @@ export class AddSale extends Component {
                     <Button color='blue' style={buttonStyle} onClick={this.handleSubmit}>Submit</Button>
                     <Button color='black' style={buttonStyle} onClick={this.props.onClose}>cancel</Button>
                 </Modal.Content>
-                {/*<Modal.Actions>*/}
-                {/*    <Button color='black' onClick={this.props.onClose}>*/}
-                {/*        Cancel*/}
-                {/*    </Button>*/}
-
-                {/*</Modal.Actions>*/}
-
             </Modal>
-
         );
     }
 }

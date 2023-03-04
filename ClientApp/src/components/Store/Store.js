@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { DeleteStore } from './DeleteStore';
 import { AddStore } from './AddStore';
 import { EditStore } from './EditStore';
-import { Table, Button, Modal } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 
 export class Store extends React.Component {
     constructor(props) {
@@ -17,29 +16,23 @@ export class Store extends React.Component {
         this.handleEditCloseModal = this.handleEditCloseModal.bind(this);
 
     }
-
     componentDidMount() {
         this.refreshList();
     }
-
 
     componentDidUpdate() {
         this.refreshList();
     }
 
     refreshList() {
-
         fetch('/api/Stores').then(response => response.json())
             .then(data => {
                 this.setState({ stores: data });
             })
-
-
     }
 
     handleDeleteOpenModal() {
         this.setState({ isDeleteModalOpen: true });
-
     }
 
     handleDeleteCloseModal() {
@@ -57,17 +50,15 @@ export class Store extends React.Component {
 
     handleEditOpenModal() {
         this.setState({ isEditModelOpen: true });
-
     }
 
     handleEditCloseModal() {
         this.setState({ isEditModelOpen: false });
     }
 
-
     //another life cycle method
     render() {
-        const { stores, storeId, storeName, currentPage, storesPerPage, storeAddress } = this.state;
+        const { stores, storeId, currentPage, storesPerPage } = this.state;
         const indexOfLastStore = currentPage * storesPerPage; 
         const indexOfFirstStore = indexOfLastStore - storesPerPage;
         const currentStores = stores.slice(indexOfFirstStore, indexOfLastStore);
@@ -90,8 +81,6 @@ export class Store extends React.Component {
                     open={this.state.isAddModalOpen}
                     onClose={this.handleAddCloseModal}
                 />
-
-
                 <table className="ui celled table">
                     <thead>
                         <tr>
@@ -130,7 +119,6 @@ export class Store extends React.Component {
 
                                         />
 
-
                                     </td>
                                 </tr>
                             })
@@ -144,9 +132,4 @@ export class Store extends React.Component {
             </div>
         );
     }
-
-
-
 }
-
-//export default Customer

@@ -1,29 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Modal } from 'semantic-ui-react';
-
-
 export class DeleteSale extends Component {
-
     constructor(props) {
         super(props);
 
     }
-
     deleteSale(id) {
         console.log(id);
         fetch('/api/Sales/' + id, { method: "delete" })
 
         this.props.onClose();
     }
-
-
-
     render() {
-
-
-
-
         let { open, id, onClose } = this.props;
 
         return (
@@ -40,6 +29,5 @@ export class DeleteSale extends Component {
                 </Modal.Actions>
             </Modal>
         );
-
     }
 } 

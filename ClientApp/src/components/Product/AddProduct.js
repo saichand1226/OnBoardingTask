@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 export class AddProduct extends Component {
 
     constructor(props) {
@@ -32,19 +32,19 @@ export class AddProduct extends Component {
         this.props.onClose();
         const { id, name, price } = this.state;
         if (name || price) {
-        const newProduct = {
-            id,
-            name,
-            price,
-        };
+            const newProduct = {
+                id,
+                name,
+                price,
+            };
 
-        fetch('/api/Products/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newProduct)
-        })
+            fetch('/api/Products/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newProduct)
+            })
                 .then(response => response.json())
                 .then(data => {
                     alert("New Product has been added!");

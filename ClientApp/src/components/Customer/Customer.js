@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { DeleteCustomer } from './DeleteCustomer';
 import { AddCustomer } from './AddCustomer';
 import { EditCustomer } from './EditCustomer';
-import { Table, Button, Modal } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 export class Customer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { custId: 0, custName: "", custAddress: "", currentPage: 1, customersPerPage: 5, customers: [], isDeleteModalOpen: false, isAddModalOpen: false, isEditModelOpen: false }
+        this.state = { custId: 0, custName: "", custAddress: "", currentPage: 1, customersPerPage: 5, customers: [], isDeleteModalOpen: false, isAddModalOpen: false, isEditModalOpen: false }
         this.handleDeleteOpenModal = this.handleDeleteOpenModal.bind(this);
         this.handleDeleteCloseModal = this.handleDeleteCloseModal.bind(this);
         this.handleAddOpenModal = this.handleAddOpenModal.bind(this);
@@ -48,7 +47,7 @@ export class Customer extends React.Component {
     }
     //another life cycle method
     render() {
-        const { customers, custId, currentPage, customersPerPage, custName, custAddress } = this.state;
+        const { customers, custId, currentPage, customersPerPage } = this.state;
         const indexOfLastCustomer = currentPage * customersPerPage;
         const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
         const currentCustomers = customers.slice(indexOfFirstCustomer, indexOfLastCustomer);
@@ -117,13 +116,3 @@ export class Customer extends React.Component {
         );
     }
 }
-//export default Customer
-
-
-
-
-
-
-
-
-

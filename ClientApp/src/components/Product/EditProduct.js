@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Modal, Form, Header } from 'semantic-ui-react';
 export class EditProduct extends Component {
 
     constructor(props) {
@@ -29,17 +29,16 @@ export class EditProduct extends Component {
         }
     }
 
+
     handleSubmit(event, id) {
         event.preventDefault();
         const { name, price } = this.state;
-        if (name || price) {
         const newProduct = {
             id,
-            name,
-            price,
+            name: name || this.props.name,
+            price: price || this.props.price,
         };
         this.props.onClose();
-        console.log(newProduct);
         fetch('/api/Products/' + id, {
             method: 'PUT',
             headers: {
@@ -47,17 +46,11 @@ export class EditProduct extends Component {
             },
             body: JSON.stringify(newProduct)
         })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    //if (data.success) {
-                    //    alert("Product details Updated Successfully!");
-                    //}
-                })
-            alert("Product details Updated Successfully!");
-        } else {
-            alert('Please enter values for both Product Name and Price fields.');
-        }
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+        alert("Customer details Updated Successfully!");
     }
     render() {
         const { open, onClose, id, name, price } = this.props;
@@ -73,11 +66,11 @@ export class EditProduct extends Component {
                             <label>Price:<span style={{ color: 'red' }}>*</span></label>
                             <input placeholder='Enter Price' defaultValue={price} onChange={this.handlePriceChange} />
                         </Form.Field>
-                    
+
                         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <Form.Button positive type="submit">Save</Form.Button>
                             <Form.Button negative onClick={onClose}>Cancel</Form.Button>
-                            
+
                         </div>
                     </Form>
                 </Modal.Content>

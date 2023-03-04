@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Modal, Form, Header } from 'semantic-ui-react';
 export class EditStore extends Component {
     constructor(props) {
         super(props);
@@ -11,24 +11,31 @@ export class EditStore extends Component {
         this.handleAddressChange = this.handleAddressChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-   handleNameChange(event) {
-        this.setState({
-            name: event.target.value,
-        });
+    handleNameChange(event) {
+        const onlyAlphabets = /^[A-Za-z\s]+$/;
+        const inputValue = event.target.value;
+
+        if (onlyAlphabets.test(inputValue) || inputValue === '') {
+            this.setState({
+                name: event.target.value,
+            });
+        }
+        // set the value of address field to the current value in the state
     }
     handleAddressChange(event) {
         this.setState({
             address: event.target.value,
         });
+        // set the value of name field to the current value in the state
+
     }
     handleSubmit(event, id) {
         event.preventDefault();
         const { name, address } = this.state;
-        if (name || address) {
         const newStore = {
             id,
-            name,
-            address,
+            name: name || this.props.name,
+            address: address || this.props.address,
         };
         this.props.onClose();
         fetch('/api/Stores/' + id, {
@@ -38,18 +45,13 @@ export class EditStore extends Component {
             },
             body: JSON.stringify(newStore)
         })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    //if (data.success) {
-                    //    alert("Product details Updated Successfully!");
-                    //}
-                })
-            alert("Store details Updated Successfully!");
-        } else {
-            alert('Please enter values for both Name and Address fields.');
-        }
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+        alert("Customer details Updated Successfully!");
     }
+
     render() {
         const { open, onClose, id, name, address } = this.props;
         return (
@@ -70,9 +72,7 @@ export class EditStore extends Component {
                         </div>
                     </Form>
                 </Modal.Content>
-                
             </Modal>
-
         );
     }
 }

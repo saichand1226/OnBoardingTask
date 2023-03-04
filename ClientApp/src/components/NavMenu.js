@@ -1,50 +1,53 @@
-import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import React, { Component } from 'react'
+import { Menu } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css';
 import { Link } from 'react-router-dom';
-import './NavMenu.css';
-
 export class NavMenu extends Component {
-  static displayName = NavMenu.name;
-
-  constructor (props) {
-    super(props);
-
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.state = {
-      collapsed: true
-    };
-  }
-
-  toggleNavbar () {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
-
-  render() {
-    return (
-        <header>
-            <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-                <NavbarBrand tag={Link} to="/">OnBoardingDemo</NavbarBrand>
-                <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                    <ul className="navbar-nav flex-grow">
-                        <NavItem>
-                            <NavLink tag={Link} className="text-dark" to="/customer">Customer</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={Link} className="text-dark" to="/Product">Product</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={Link} className="text-dark" to="/Store">Store</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={Link} className="text-dark" to="/Sales">Sales</NavLink>
-                        </NavItem>
-                    </ul>
-                </Collapse>
-            </Navbar>
-        </header>
-    );
-  }
+    state = { activeItem: 'Home' }
+    handleItemClick = (e, { name }) => {
+        this.setState({ activeItem: name });
+    }
+    render() {
+        const { activeItem } = this.state
+        //debugger;
+        return (
+            <Menu horizental>
+                <Menu.Item as={Link} to="/"
+                    color='green'
+                    icon='home'
+                    name='Home'
+                    active={activeItem === 'Home'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item as={Link} to="customer"
+                    color='green'
+                    icon='user'
+                    name='Customer'
+                    active={activeItem === 'Customer'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item as={Link} to="product"
+                    color='green'
+                    icon='archive'
+                    name='Product'
+                    active={activeItem === 'Product'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item as={Link} to="store"
+                    color='green'
+                    icon='building outline'
+                    name='Store'
+                    active={activeItem === 'Store'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item as={Link} to="sales"
+                    color='green'
+                    icon='dollar sign'
+                    name='Sales'
+                    active={activeItem === 'Sales'}
+                    onClick={this.handleItemClick}
+                />
+            </Menu >
+        )
+    }
 }

@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:cs"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "cs"
+    }
+  }
+}

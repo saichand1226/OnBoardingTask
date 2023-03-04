@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Modal, Form, Header } from 'semantic-ui-react';
+import { Button, Modal, Form, Header } from 'semantic-ui-react';
 export class AddStore extends Component {
 
     constructor(props) {
@@ -73,7 +73,6 @@ export class AddStore extends Component {
                             <label>Address:<span style={{ color: 'red' }}>*</span></label>
                             <input type="text" value={this.state.address} onChange={this.handleAddressChange} required />
                         </Form.Field>
-                        {/*<Form.Button positive type="submit">Submit</Form.Button>*/}
                     </Form>
                 </Modal.Content>
                 <Modal.Actions>
@@ -83,11 +82,8 @@ export class AddStore extends Component {
                     <Button color='black' onClick={this.props.onClose}>
                         Cancel
                     </Button>
-
                 </Modal.Actions>
-
             </Modal>
-
         );
     }
 }
